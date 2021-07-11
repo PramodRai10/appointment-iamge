@@ -1,0 +1,336 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap");
+* {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+/* input {
+  width: 60% !important;
+  padding: 8px 20px !important;
+  margin: 8px 0 !important;
+  border: 1px solid #ccc !important;
+  border-radius: 4px !important;
+  outline-width: 0;
+  font-family: "Poppins", sans-serif !important;
+} */
+
+input[type="radio"] {
+  margin-left: 3em !important;
+}
+
+button {
+  width: 30%;
+  padding: 1em;
+  margin: 2em;
+  align-content: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* section {
+  margin-bottom: 2em;
+  border-radius: 2em;
+  padding: 2em;
+  text-align: center;
+  width: 400px;
+} */
+
+select {
+  width: 100%;
+  padding: 8px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  outline-width: 0;
+  font-family: "Poppins", sans-serif !important;
+}
+.layout {
+  width: -webkit-fill-available;
+}
+.navbar {
+  padding: 50px 0 !important;
+  text-align: center;
+  background-color: white;
+}
+.layoutMiddle {
+  background-color: #fcfdfe;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.formBackground {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 33%;
+}
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 30px 0;
+}
+h4 {
+  color: rgb(54, 54, 54) !important;
+  font-family: "Poppins", sans-serif;
+  margin: 20px 0;
+}
+span {
+  color: red;
+  font-family: "Poppins", sans-serif;
+}
+.inputDetails {
+  width: 400px;
+}
+
+.radiobuttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  width: 30%;
+  margin: 30px 0;
+  color: brown;
+}
+.radiobuttons > label {
+  background-color: #f8ceec;
+  background-image: linear-gradient(315deg, #f8ceec 0%, #a88beb 74%);
+
+  color: white;
+  padding: 5px 20px;
+  border-radius: 50px;
+  font-size: 13px;
+  margin: 0 20px;
+}
+.inputText {
+  width: 400px !important;
+  padding: 8px 20px !important;
+  margin: 8px 0 !important;
+  border: 1px solid #ccc !important;
+  border-radius: 4px !important;
+  outline-width: 0;
+  font-family: "Poppins", sans-serif !important;
+}
+.selectOption {
+  width: 270px !important;
+  padding: 8px 20px !important;
+  margin: 8px 0 !important;
+  border: 1px solid #ccc !important;
+  border-radius: 4px !important;
+  outline-width: 0;
+  font-family: "Poppins", sans-serif !important;
+}
+.vaccineSelection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.submitButton {
+  margin-right: 30px;
+  margin-top: 30px;
+  cursor: pointer;
+  background-color: #aff6cf;
+  background-image: linear-gradient(315deg, #aff6cf 0%, #9f98e8 74%);
+  color: rgb(51, 51, 51);
+  font-family: "Poppins", sans-serif;
+  border-radius: 50px;
+  border: 2px solid rgb(82, 82, 82);
+  padding: 12px 50px;
+  outline-width: 0;
+  margin-bottom: 30px;
+  font-weight: 600;
+  font-size: 20px;
+}
+footer {
+  text-align: center;
+  background-color: #2b2b2b;
+  color: white;
+  height: 20vh;
+  padding: 30px;
+}
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f100;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(48, 46, 46);
+  border-radius: 50px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+@media only screen and (max-width: 700px) {
+  .formBackground {
+    width: 80%;
+  }
+  .inputDetails {
+    width: 300px;
+  }
+  .inputText {
+    width: 263px !important;
+  }
+  h1 {
+    text-align: center;
+    font-size: 20px;
+  }
+  h2 {
+    text-align: center;
+    font-size: 15px;
+  }
+  h3 {
+    text-align: center;
+    font-size: 15px;
+  }
+  .submitButton {
+    width: 200px !important;
+  }
+}
+.complete{
+  background-color: rgb(232, 174, 255) !important;
+  
+}
+.success{
+  margin: 200px;
+  border-radius: 20px;
+  border: 2px solid rgb(56, 56, 56);
+  padding: 5% 18%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.success>h1{
+  font-size: 30px;
+  font-weight: 400;
+}
+.success>p{
+  font-size: 25px;
+  font-weight: 400;
+}
+.errorPage{
+  background-color: rgb(232, 174, 255) !important;
+}
+.errorContent{
+ margin: 200px;
+  border-radius: 20px;
+  border: 2px solid rgb(56, 56, 56);
+  padding: 5% 18%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.errorContent>h1{
+  font-size: 60px;
+  font-weight: 600;
+  color: rgb(255, 143, 143);
+  margin-bottom: 2%;
+}
+.errorContent>p{
+  font-size: 25px;
+  font-weight: 400;
+}
+
+
+
+/* Spinner style */
+.cont {
+  text-align: center;
+  display: block; 
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
+}
+.cont > h2 {
+  height:20vmin;
+  left:calc(50% - 25vmin);
+  position:fixed;
+  top:55%;
+  width:50vmin;
+  /* z-index:1; */
+  text-align: center;
+  line-height: 1.5;
+  color: #09f;
+}
+.loader {
+  animation:spin 1s infinite linear;
+  border:solid 2vmin transparent;
+  border-radius:50%;
+  border-right-color:#09f;
+  border-top-color:#09f;
+  box-sizing:border-box;
+  height:20vmin;
+  left:calc(50% - 10vmin);
+  position:fixed;
+  top:calc(50% - 20vmin);
+  width:20vmin;
+  /* z-index:1; */
+  &:before {
+    animation:spin 2s infinite linear;
+    border:solid 2vmin transparent;
+    border-radius:50%;
+    border-right-color:#3cf;
+    border-top-color:#3cf;
+    box-sizing:border-box;
+    content:"";
+    height:16vmin;
+    left:0;
+    position:absolute;
+    top:0;
+    width:16vmin;
+  }
+  &:after {
+    animation:spin 3s infinite linear;
+    border:solid 2vmin transparent;
+    border-radius:50%;
+    border-right-color:#6ff;
+    border-top-color:#6ff;
+    box-sizing:border-box;
+    content:"";
+    height:12vmin;
+    left:2vmin;
+    position:absolute;
+    top:2vmin;
+    width:12vmin;
+  }
+}
+
+@keyframes spin {
+  100% {
+    transform:rotate(360deg);
+  }
+}
