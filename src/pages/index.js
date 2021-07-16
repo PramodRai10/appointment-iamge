@@ -42,7 +42,7 @@ export default function Home() {
         document.querySelector('.fetching-slots').style.display = "block";
         var item = []
 
-        fetch('http://localhost:3000/getDetails', {
+        fetch('https://appointment-image.herokuapp.com/getDetails', {
           method: 'POST',
           body: JSON.stringify({ date_value: document.getElementById('register_date').value }),
           headers: {
@@ -150,7 +150,7 @@ export default function Home() {
         function post_data() {
 
           document.querySelector('.cont-2').style.display = 'block';
-          fetch('http://localhost:3000/storeDetails', {
+          fetch('https://appointment-image.herokuapp.com/storeDetails', {
             method: 'POST',
             body: formData,
           })
