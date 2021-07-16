@@ -27,9 +27,8 @@ export default function Home() {
     document.getElementById('register_date').style.display = 'inline-block'
 
   }
-
-  function setTime(e) {
-
+  function dateChange(e) {
+    document.getElementById('no_date_available').style.display = 'block'
     if (e.target.value != "") {
       var day = new Date(e.target.value).getDay()
 
@@ -40,11 +39,12 @@ export default function Home() {
         document.getElementById('timeData').style.display = "none"
       }
       else {
+        document.querySelector('.fetching-slots').style.display = "block";
         var item = []
 
-        fetch('https://appointment-image.herokuapp.com/getDetails', {
+        fetch('http://localhost:3000/getDetails', {
           method: 'POST',
-          body: JSON.stringify({ date_value: document.getElementsByTagName('input')[6].value }),
+          body: JSON.stringify({ date_value: document.getElementById('register_date').value }),
           headers: {
             'Content-type': 'application/json'
           }
@@ -55,6 +55,7 @@ export default function Home() {
             data = JSON.parse(data['time_value']['body'])
             item.push('<option value="No">Choose time</option>')
             if (data['time_data'].length == 0) {
+              document.querySelector('.fetching-slots').style.display = "none";
               document.getElementById('no_date_available').style.display = 'inline-block'
             }
             else {
@@ -63,6 +64,7 @@ export default function Home() {
                 item.push('<option value=' + value + '>' + value + '</option>')
                 if (index === data['time_data'].length - 1) {
                   document.getElementById('timeData').innerHTML = item.join()
+                  document.querySelector('.fetching-slots').style.display = "none";
                   document.getElementById('timeData').style.display = "inline-block"
                   //document.querySelector('#SubmitButton').addEventListener('click',SubmitForm)
 
@@ -79,7 +81,9 @@ export default function Home() {
     }
   }
 
+  function setTime(e) {
 
+  }
 
   const SubmitForm = () => {
     try {
@@ -90,14 +94,17 @@ export default function Home() {
         var form_input = {
           'hospital': 'FERNANDO',
           'dose_count': document.querySelector('input[name="dose_number"]:checked').value,
-          'doc_no': inputs[3].value,
-          'name': inputs[4].value,
-          'email': inputs[6].value,
-          'tel': inputs[5].value,
+          'doc_no': document.getElementById("document_no").value,
+          'name': document.getElementById("full-name").value,
+          'email': document.getElementById("email").value,
+          'tel': document.getElementById("telephone").value,
           'birth_year': document.getElementById("birth_year").value,
           'gender': document.getElementById('gender').value,
+          'date_registered': document.getElementById("register_date").value,
+          'time_registered': document.getElementById("timeData").value
 
         }
+        form_input.dateRegistered = document.getElementById('dose_name').value
         const formData = new FormData();
         formData.append('hospital', 'FERNANDO');
         formData.append('dose_count', form_input.dose_count);
@@ -108,11 +115,13 @@ export default function Home() {
         formData.append('birth_year', form_input.birth_year);
         formData.append('gender', form_input.gender);
         formData.append('file', file);
+        formData.append('date_registered', form_input.date_registered);
+        formData.append('time_registered', form_input.time_registered);
 
         if (form_input.dose_count != null) {
           if (form_input.dose_count == 'dose1') {
 
-            if ((form_input.gender != "No") & (form_input.hospital != "No") & (form_input.dose_count != "") & (form_input.doc_no != "") & (form_input.name != "") & (form_input.email != "") & (form_input.tel != "") & (form_input.birth_year != "No")) {
+            if ((form_input.date_registered != "") & (form_input.time_registered != "No") & (form_input.gender != "No") & (form_input.hospital != "No") & (form_input.dose_count != "") & (form_input.doc_no != "") & (form_input.name != "") & (form_input.email != "") & (form_input.tel != "") & (form_input.birth_year != "No")) {
               post_data();
             }
             else {
@@ -126,7 +135,7 @@ export default function Home() {
             formData.append('vaccine', form_input.vaccine);
             formData.append('last_vaccine_date', form_input.last_vaccine_date);
 
-            if ((form_input.gender != "No") & (file!=undefined) & (form_input.hospital != "No") & (form_input.vaccine != "No") & (form_input.last_vaccine_date != "") & (form_input.dose_count != "") & (form_input.doc_no != "") & (form_input.name != "") & (form_input.email != "") & (form_input.tel != "") & (form_input.birth_year != "No")) {
+            if ((form_input.date_registered != "") & (form_input.time_registered != "No") & (form_input.gender != "No") & (file != undefined) & (form_input.hospital != "No") & (form_input.vaccine != "No") & (form_input.last_vaccine_date != "") & (form_input.dose_count != "") & (form_input.doc_no != "") & (form_input.name != "") & (form_input.email != "") & (form_input.tel != "") & (form_input.birth_year != "No")) {
               post_data();
             }
             else {
@@ -140,8 +149,8 @@ export default function Home() {
         }
         function post_data() {
 
-          document.querySelector('.cont').style.display = 'block';
-          fetch('https://appointment-image.herokuapp.com/storeDetails', {
+          document.querySelector('.cont-2').style.display = 'block';
+          fetch('http://localhost:3000/storeDetails', {
             method: 'POST',
             body: formData,
           })
@@ -150,8 +159,11 @@ export default function Home() {
               if ((data['statusCode'] == 200) | (data['statusCode'] == 403)) {
                 if (JSON.parse(data['body'])['message'] === 'Successfully Added')
                   window.location.href = '/complete'
-                else
+                else {
                   alert('User Already Exist')
+                  document.querySelector('.cont-2').style.display = 'none';
+                  window.location.href = '/'
+                }
 
               }
               else {
@@ -312,7 +324,7 @@ export default function Home() {
             <h4>
               Full Name(As shown in Aadhaar)<span>*</span>
             </h4>
-            <input className="inputText" type="text" name="Name" placeholder="Full Name as per Aadhar" onChange={
+            <input className="inputText" type="text" id="full-name" name="Name" placeholder="Full Name as per Aadhar" onChange={
               (e) => {
                 var name_regex = /^[a-z ,.'-]+$/i
                 if (e.target.value != null) {
@@ -355,10 +367,31 @@ export default function Home() {
 
             </select>
 
+            {/* Register Date */}
+            <h4>
+              Register Date<span>*</span>
+            </h4>
+
+            <input className="inputText" type="text" name="text" id="register_date" onChange={dateChange} onBlur={setTime} placeholder="vaccination date" onFocus={(e) => {
+              e.target.setAttribute('type', 'date')
+              e.target.setAttribute('min', min_date)
+            }
+
+            }></input>
+            <div>
+              <p id="no_date_available" style={{ display: "none" }}>Sorry, No slots available on this day</p>
+              <select id="timeData" style={{ display: "none" }}>
+
+
+              </select>
+
+
+            </div>
+
             <h4>
               Mobile Number<span>*</span>
             </h4>
-            <input className="inputText" type="number" name="telephone" placeholder="Mobile Number" onChange={
+            <input className="inputText" type="number" id="telephone" name="telephone" placeholder="Mobile Number" onChange={
               (e) => {
                 var phone_regex = /^([0-9]{10})$/
                 if (e.target.value != null) {
@@ -383,7 +416,7 @@ export default function Home() {
               Email(We will notify you once vaccine is available)<span>*</span>
             </h4>
 
-            <input className="inputText" type="email" name="Email" placeholder="Email ID" onChange={
+            <input className="inputText" type="email" id="email" name="Email" placeholder="Email ID" onChange={
               (e) => {
                 var mail_regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
                 if (e.target.value != null) {
@@ -412,9 +445,13 @@ export default function Home() {
       </form>
       <button className="submitButton" id="SubmitButton" onClick={SubmitForm}>Submit</button>
       {/* Spinner */}
-      <div className="cont" style={{ display: 'none' }}>
+      <div className="cont cont-2" style={{ display: 'none' }}>
         <div className="loader"></div>
         <h2>Please Hold On, Submitting your details...</h2>
+      </div>
+      <div className="cont fetching-slots" style={{ display: 'none' }}>
+        <div className="loader"></div>
+        <h2>Please Hold On, fetching free slots on the selected day...</h2>
       </div>
     </Layout>
   )

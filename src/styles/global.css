@@ -221,7 +221,8 @@ footer {
   
 }
 .success{
-  margin: 200px;
+  margin: 100px;
+  margin-top: 30px;
   border-radius: 20px;
   border: 2px solid rgb(56, 56, 56);
   padding: 5% 18%;
