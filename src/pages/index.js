@@ -437,7 +437,7 @@ export default function Home() {
             <span id="invalid_mail" style={{ display: "none" }}>Not a valid mail</span>
 
             <h4>
-              Upload Image<span>*</span>
+              Upload Aadhar Card Image<span>*</span>
             </h4>
             <input className="inputText" type="file" name="uploadImage" id="upload-image"></input>
           </div>
